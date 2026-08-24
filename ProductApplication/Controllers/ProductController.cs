@@ -48,7 +48,11 @@ namespace ProductApplication.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, new
+                {
+                    message = ex.Message,
+                    innerException = ex.InnerException?.Message
+                });
             }
         }
         [HttpPut("UpdateProduct/{id}")]
