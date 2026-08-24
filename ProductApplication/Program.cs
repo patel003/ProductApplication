@@ -13,7 +13,8 @@ builder.Services.AddCors(options =>
     {
         policy
             .WithOrigins(
-                "http://localhost:4200"
+                "http://localhost:4200",
+                "http://localhost:50313"
             // baad me yahan deployed Angular URL add karenge
             )
             .AllowAnyHeader()
