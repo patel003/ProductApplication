@@ -1,0 +1,27 @@
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: productapp-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "YourStrong@Pass123"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: productapp-api
+    ports:
+      - "5000:8080"
+    environment:
+       ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=ProductAngularDb;User Id=sa;Password=YourStrong@Pass123;TrustServerCertificate=True;"
+    depends_on:
+      - sqlserver
+
+volumes:
+  sqlserver_data:
