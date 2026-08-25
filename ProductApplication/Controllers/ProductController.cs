@@ -21,7 +21,7 @@ namespace ProductApplication.Controllers
             try
             {
                 var products = await _context.Products.ToListAsync();
-                if(products == null || products.Count == 0)
+                if (products == null || products.Count == 0)
                 {
                     return NotFound("No products found.");
                 }
@@ -42,6 +42,11 @@ namespace ProductApplication.Controllers
             }
             try
             {
+                product.DateTime = DateTime.SpecifyKind(
+                              product.DateTime,
+                         DateTimeKind.Local
+                                    ).ToUniversalTime();
+                                                        
                 await _context.Products.AddAsync(product);
                 await _context.SaveChangesAsync();
                 return Ok(product);
@@ -57,7 +62,7 @@ namespace ProductApplication.Controllers
         }
         [HttpPut("UpdateProduct/{id}")]
         public async Task<IActionResult> UpdateProduct(int id, Product product)
-        { 
+        {
             try
             {
                 var isRecordavilable = await _context.Products.SingleOrDefaultAsync(p => p.ProductId == id);
