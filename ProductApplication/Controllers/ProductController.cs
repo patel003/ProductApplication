@@ -42,10 +42,6 @@ namespace ProductApplication.Controllers
             }
             try
             {
-                product.DateTime = DateTime.SpecifyKind(
-                              product.DateTime,
-                         DateTimeKind.Local
-                                    ).ToUniversalTime();
                                                         
                 await _context.Products.AddAsync(product);
                 await _context.SaveChangesAsync();
