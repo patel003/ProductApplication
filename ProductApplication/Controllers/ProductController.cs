@@ -73,7 +73,7 @@ namespace ProductApplication.Controllers
                 isRecordavilable.DateTime = product.DateTime;
                 isRecordavilable.IsExpired = product.IsExpired;
                 await _context.SaveChangesAsync();
-                return Ok("Product updated successfully.");
+                return Ok(isRecordavilable);
             }
             catch (Exception ex)
             {
