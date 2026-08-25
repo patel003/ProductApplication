@@ -14,13 +14,14 @@ builder.Services.AddCors(options =>
         policy
             .WithOrigins(
                 "http://localhost:4200",
-                "http://localhost:50313"
-            // baad me yahan deployed Angular URL add karenge
+                "http://localhost:50313",
+                "https://product-app-frontend-ashen.vercel.app",
+                "https://product-app-frontend-ep3mg0lnx-vp822156-2866s-projects.vercel.app"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
-});// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>

@@ -11,5 +11,17 @@ namespace ProductApplication.Data
         }
 
         public DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configure DateTime to use UTC
+            modelBuilder.Entity<Product>()
+                .Property(p => p.DateTime)
+                .HasConversion(
+                    v => v.ToUniversalTime(),
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
+        }
     }
 }
