@@ -12,12 +12,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngular", policy =>
     {
         policy
-            .WithOrigins(
-                "http://localhost:4200",
-                "http://localhost:50313",
-                "https://product-app-frontend-ashen.vercel.app",
-                "https://product-app-frontend-ep3mg0lnx-vp822156-2866s-projects.vercel.app"
-            )
+            .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
